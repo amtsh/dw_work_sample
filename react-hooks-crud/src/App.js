@@ -5,7 +5,7 @@ import "./App.css";
 
 import AddProduct from "./components/AddProduct";
 import Product from "./components/Product";
-// import ProductsList from "./components/ProductsList";
+import ProductsList from "./components/ProductsList";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
 
       <div className="container mt-3">
         <Switch>
-          {/* <Route exact path={["/", "/products"]} component={ProductsList} /> */}
+          <Route exact path={["/", "/products"]} component={ProductsList} />
           <Route exact path="/add" component={AddProduct} />
           <Route path="/products/:id" component={Product} />
         </Switch>

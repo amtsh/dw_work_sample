@@ -12,13 +12,13 @@ const create = (data) => {
   return http.post("/products", data);
 };
 
-const findByTitle = (title) => {
-  return http.get(`/products?title=${title}`);
+const findByName = (name) => {
+  return http.get(`/products?name=${name}`);
 };
 
 export default {
   getAll,
   get,
   create,
-  findByTitle,
+  findByName,
 };
