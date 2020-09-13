@@ -17,11 +17,13 @@ db.sequelize.sync();
 //   console.log("Drop and re-sync db.");
 // });
 
-// var corsOptions = {
-//   origin: ["http://localhost:8080", "http://localhost:3000"],
-// };
+if (process.env.NODE_ENV !== "production") {
+  var corsOptions = {
+    origin: ["http://localhost:8080", "http://localhost:3000"],
+  };
 
-// app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
+}
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
