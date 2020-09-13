@@ -24,12 +24,17 @@ exports.create = (req, res) => {
     prepaidOnly: req.body.prepaidOnly ? req.body.prepaidOnly : true,
   };
 
+  console.log("---------------------product");
+  console.log(product);
+
   // Save Product in the database
   Product.create(product)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
+      console.log("---------------------error");
+      console.log(error);
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Product.",
