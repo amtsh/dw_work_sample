@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
     // Following should be in a different table/model and mapped to product
     color: {
       type: Sequelize.ENUM,
-      values: ["Rose Gold", "Silver"],
+      values: ["Rose Gold", "Silver", "Gold"],
     },
     size: {
       type: Sequelize.ENUM,
