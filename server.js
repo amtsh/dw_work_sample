@@ -4,9 +4,12 @@ const cors = require("cors");
 const path = require("path");
 
 const db = require("./app/models");
-const routes = require("./app/routes/product.routes");
+const assetRoutes = require("./app/routes/asset.routes");
+const productRoutes = require("./app/routes/product.routes");
 
 const app = express();
+
+app.options("*", cors()); // include before other routes
 db.sequelize.sync();
 
 // In development, might need to drop existing tables & re-sync database
@@ -19,7 +22,6 @@ db.sequelize.sync();
 // };
 
 // app.use(cors(corsOptions));
-app.options("*", cors()); // include before other routes
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -32,17 +34,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "react-hooks-crud/build")));
 
 // serves the index.html file on any unknown routes
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "react-hooks-crud/build", "index.html"));
-});
+// if some endpoint is not working, it's due to following default routing to index.html
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "react-hooks-crud/build", "index.html"));
+// });
 
 // simple route
 // app.get("/", (req, res) => {
 //   res.json({ message: "Hello world!" });
 // });
 
-routes(app);
-// require("./app/routes/turorial.routes")(app);
+productRoutes(app);
+assetRoutes(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

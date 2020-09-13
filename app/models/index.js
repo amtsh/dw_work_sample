@@ -39,5 +39,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.products = require("./product.model.js")(sequelize, Sequelize);
+db.assets = require("./asset.model.js")(sequelize, Sequelize);
 
 module.exports = db;

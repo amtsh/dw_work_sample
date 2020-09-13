@@ -22,6 +22,7 @@ exports.create = (req, res) => {
     taxIncluded: req.body.taxIncluded ? req.body.taxIncluded : true,
     freeShipping: req.body.freeShipping ? req.body.freeShipping : true,
     prepaidOnly: req.body.prepaidOnly ? req.body.prepaidOnly : true,
+    assetIds: req.body.assetIds,
   };
 
   // Save Product in the database
