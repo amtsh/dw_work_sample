@@ -24,17 +24,12 @@ exports.create = (req, res) => {
     prepaidOnly: req.body.prepaidOnly ? req.body.prepaidOnly : true,
   };
 
-  console.log("---------------------product");
-  console.log(product);
-
   // Save Product in the database
   Product.create(product)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log("---------------------error");
-      console.log(error);
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Product.",
@@ -73,12 +68,3 @@ exports.findOne = (req, res) => {
       });
     });
 };
-
-// Update a Product by the id in the request
-// exports.update = (req, res) => {};
-
-// Delete a Product with the specified id in the request
-// exports.delete = (req, res) => {};
-
-// Delete all Products from the database.
-// exports.deleteAll = (req, res) => {};

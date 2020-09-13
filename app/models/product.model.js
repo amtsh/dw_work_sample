@@ -1,5 +1,5 @@
 // This Sequelize Model represents products table in PostgreSQL database.
-// These columns will be generated automatically: id, name, description, price, color, createdAt, updatedAt.
+// These columns will be generated automatically: id, name, description, price, color, assetIds, createdAt, updatedAt.
 module.exports = (sequelize, Sequelize) => {
   const Product = sequelize.define("product", {
     name: {
@@ -20,14 +20,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.ENUM,
       values: ["Free Size", "28"],
     },
-    // Following should be in a different table/model and mapped to product
-    // country: {
-    //   type: Sequelize.FLOAT.ENUM,
-    //   values: [2_DIGIT_COUNTRY_CODE_LIST],
-    // },
-    // price: {
-    //   type: Sequelize.FLOAT.UNSIGNED,
-    // },
     taxIncluded: {
       type: Sequelize.BOOLEAN,
     },
@@ -36,6 +28,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     prepaidOnly: {
       type: Sequelize.BOOLEAN,
+    },
+    assetIds: {
+      type: Sequelize.ARRAY(Sequelize.INTEGER),
     },
   });
 
