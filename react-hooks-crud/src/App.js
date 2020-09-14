@@ -1,42 +1,24 @@
-import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import React, { useEffect } from "react";
+import "./styles.css";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { Products } from "./components/Products";
+import { inject } from "mobx-react";
+import { useStaticRendering } from "mobx-react";
 
-import AddProduct from "./components/AddProduct";
-import Product from "./components/Product";
-import ProductsList from "./components/ProductsList";
+// useStaticRendering(true);
 
-function App() {
+export const App = inject("productStore")((props) => {
+  useEffect(() => {
+    console.log("fetching products");
+    props.productStore.getProductsAsync();
+  });
+
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/products" className="navbar-brand">
-          Daniel Wellington
-        </a>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/products"} className="nav-link">
-              Products
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
-              Add
-            </Link>
-          </li>
-        </div>
-      </nav>
-
-      <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/products"]} component={ProductsList} />
-          <Route exact path="/add" component={AddProduct} />
-          <Route path="/products/:id" component={Product} />
-        </Switch>
-      </div>
+    <div className="App">
+      <Header />
+      <Products productStore={props.productStore} />
+      <Footer />
     </div>
   );
-}
-
-export default App;
+});
